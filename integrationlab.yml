@@ -1,0 +1,30 @@
+# Integration lab topology
+name: lab04
+
+topology:
+  nodes:
+    PC1:
+      kind: linux
+      image: jlesage/firefox  
+    PC2:
+      kind: linux
+      image: ubuntu
+    PC3:
+      kind: linux
+      image: ubuntu
+    PC4:
+      kind: linux
+      image: ethereum/client-go
+    router1:
+      kind: linux
+      image: frrouting/frr
+    router2:
+      kind: linux
+      image: frrouting/frr
+
+  links:
+    - endpoints: ["PC1:e1-1", "router1:eth1"]
+    - endpoints: ["PC2:e1-1", "router1:eth2"]
+    - endpoints: ["PC3:e1-1", "router2:eth1"]
+    - endpoints: ["PC4:e1-1", "router2:eth2"]
+    - endpoints: ["router1:eth3", "router2:eth3"]
